@@ -1,27 +1,51 @@
-
+#
+#spring:
+#    h2:
+#      console:
+#        enabled: true
+#    datasource:
+#      username: sa
+#      password:
+#      driver-class-name: org.h2.Driver
+#      hikari:
+#        jdbc-url: jdbc:h2:mem:testDB
+#
+#      jpa:
+#        spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+#        show-sql: true
+#        hibernate:
+#          ddl-auto: create-drop
+#      logging:
+#        level:
+#          org.springframework.security: trace
+#
+#
+#server:
+#  port: 8088
 
 
 
 spring:
-    h2:
-      console:
-        enabled: true
-    datasource:
-      username: sa
-      password:
-      driver-class-name: org.h2.Driver
-      hikari:
-        jdbc-url: jdbc:h2:mem:testDB
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password:
 
-      jpa:
-        spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-        show-sql: true
-        hibernate:
-          ddl-auto: create-drop
-      logging:
-        level:
-          org.springframework.security: trace
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 
+logging:
+  level:
+    org.springframework.security: trace
 
 server:
   port: 8088
+
+
+jwt:
+  rsa-private-key: classpath:certs/privateKey.pem
+  rsa-public-key: classpath:certs/publicKey.pem
